@@ -8,6 +8,7 @@ const App = (): ReactElement => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(initTasks());
   const columnWidth = 60;
+  const ganttHeight = 800;
 
   return (
     <Box>
@@ -16,6 +17,7 @@ const App = (): ReactElement => {
         viewMode={view}
         listCellWidth="350px"
         columnWidth={columnWidth}
+        ganttHeight={ganttHeight}
       />
     </Box>
   );
