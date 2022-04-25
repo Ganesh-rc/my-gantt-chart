@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactElement, useState } from "react";
+import { Box } from "@mui/material";
+import { Gantt, Task, ViewMode } from "gantt-task-react";
+import { initTasks, getTimeDurationOfProject } from "./services/helperData";
+import "gantt-task-react/dist/index.css";
 
-function App() {
+const App = (): ReactElement => {
+  const [view, setView] = useState<ViewMode>(ViewMode.Day);
+  const [tasks, setTasks] = useState<Task[]>(initTasks());
+  const columnWidth = 60;
+  const ganttHeight = 800;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <Gantt
+        tasks={tasks}
+        viewMode={view}
+        listCellWidth="320px"
+        columnWidth={columnWidth}
+        ganttHeight={ganttHeight}
+      />
+    </Box>
   );
-}
+};
 
 export default App;
