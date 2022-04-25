@@ -204,7 +204,7 @@ export const initTasks = () => {
         0,
         0
       ),
-      name: "Development - Linking Getting data from server",
+      name: "Development - Getting data from server",
       id: "Task 9.4",
       progress: 2,
       dependencies: ["Task 9.2", "Task 9.3"],

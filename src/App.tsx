@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { Box } from "@mui/material";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
-import { initTasks, getTimeDurationOfProject } from "./helperData";
+import { initTasks, getTimeDurationOfProject } from "./services/helperData";
 import "gantt-task-react/dist/index.css";
 
 const App = (): ReactElement => {
@@ -15,7 +15,7 @@ const App = (): ReactElement => {
       <Gantt
         tasks={tasks}
         viewMode={view}
-        listCellWidth="350px"
+        listCellWidth="320px"
         columnWidth={columnWidth}
         ganttHeight={ganttHeight}
       />
