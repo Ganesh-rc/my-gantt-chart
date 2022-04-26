@@ -15,6 +15,6 @@ export const useUiData = (): UseUiDataProps => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
   const columnWidth = 60;
-  const ganttHeight = 800;
+  const ganttHeight = window.innerHeight - 100;
   return { view, setView, tasks, setTasks, columnWidth, ganttHeight };
 };
