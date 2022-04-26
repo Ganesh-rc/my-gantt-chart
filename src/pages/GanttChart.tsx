@@ -6,12 +6,11 @@ import {
   getStartAndEndDatesOfProject,
 } from "../services/helperData";
 import "gantt-task-react/dist/index.css";
+import { getUiData } from "../services/helperFunctions";
 
 export const GanttChart = (): ReactElement => {
-  const [view, setView] = useState<ViewMode>(ViewMode.Day);
-  const [tasks, setTasks] = useState<Task[]>(getTaskList());
-  const columnWidth = 60;
-  const ganttHeight = 800;
+  const { view, setView, tasks, setTasks, columnWidth, ganttHeight } =
+    getUiData();
 
   return (
     <Box>
