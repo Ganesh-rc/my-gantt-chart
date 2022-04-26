@@ -1,6 +1,6 @@
 import { Task } from "gantt-task-react";
 
-export const initTasks = () => {
+export const getTaskList = () => {
   const currentDate = new Date();
   const tasks: Task[] = [
     {
@@ -260,13 +260,16 @@ export const initTasks = () => {
   return tasks;
 };
 
-export const getTimeDurationOfProject = (tasks: Task[], pid: string) => {
-  const tasksOfProjects = tasks.filter((t) => t.project === pid);
-  let start = tasksOfProjects[0].start;
-  let end = tasksOfProjects[0].end;
+export const getStartAndEndDatesOfProject = (
+  tasks: Task[],
+  projectId: string
+) => {
+  const projectTasks = tasks.filter((t) => t.project === projectId);
+  let start = projectTasks[0].start;
+  let end = projectTasks[0].end;
 
-  for (let i = 0; i < tasksOfProjects.length; i++) {
-    const task = tasksOfProjects[i];
+  for (let taskIndex = 0; taskIndex < projectTasks.length; taskIndex++) {
+    const task = projectTasks[taskIndex];
     if (start.getTime() > task.start.getTime()) {
       start = task.start;
     }
