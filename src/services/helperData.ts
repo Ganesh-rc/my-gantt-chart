@@ -23,7 +23,7 @@ export const getTaskList = () => {
       ),
       name: "Idea",
       id: "Task 0",
-      progress: 120,
+      progress: 90,
       type: "task",
       project: "ProjectSample",
     },

@@ -39,7 +39,7 @@ export const useUiData = (): UseUiDataProps => {
   return { view, setView, tasks, setTasks, columnWidth, ganttHeight };
 };
 
-export const handleTaskDateChange = (
+export const handleTaskChange = (
   modifiedTask: Task,
   tasks: Task[],
   setTasks: Function
@@ -64,4 +64,14 @@ export const handleTaskDateChange = (
     }
   }
   setTasks(updatedTaskList);
+};
+
+export const handleTaskProgressChange = (
+  modifiedTask: Task,
+  taskList: Task[],
+  setTasks: Function
+): void => {
+  setTasks(
+    taskList.map((task) => (task.id === modifiedTask.id ? modifiedTask : task))
+  );
 };
