@@ -31,6 +31,8 @@ interface UseUiDataProps {
   setView: Function;
   tasks: Task[];
   setTasks: Function;
+  loading: Boolean;
+  setLoading: Function;
   columnWidth: number;
   ganttHeight: number;
 }
@@ -38,9 +40,19 @@ interface UseUiDataProps {
 export const useUiData = (): UseUiDataProps => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
+  const [loading, setLoading] = useState<Boolean>(true);
   const columnWidth = 60;
   const ganttHeight = window.innerHeight - 100;
-  return { view, setView, tasks, setTasks, columnWidth, ganttHeight };
+  return {
+    view,
+    setView,
+    tasks,
+    setTasks,
+    loading,
+    setLoading,
+    columnWidth,
+    ganttHeight,
+  };
 };
 
 export const handleTaskChange = (
