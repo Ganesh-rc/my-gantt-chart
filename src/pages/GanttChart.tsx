@@ -3,10 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 import { useUiData, handleTaskDateChange } from "../services/helperFunctions";
-import {
-  getTaskList,
-  getStartAndEndDatesOfProject,
-} from "../services/helperData";
+import { getTaskList } from "../services/helperData";
 
 export const GanttChart = (): ReactElement => {
   const { view, setView, tasks, setTasks, columnWidth, ganttHeight } =

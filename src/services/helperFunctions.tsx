@@ -1,6 +1,26 @@
 import React, { useState, ReactElement } from "react";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
-import { getTaskList, getStartAndEndDatesOfProject } from "./helperData";
+import { getTaskList } from "./helperData";
+
+export const getStartAndEndDatesOfProject = (
+  tasks: Task[],
+  projectId: string
+): [start: Date, end: Date] => {
+  const projectTasks = tasks.filter((t) => t.project === projectId);
+  let start = projectTasks[0].start;
+  let end = projectTasks[0].end;
+
+  for (let taskIndex = 0; taskIndex < projectTasks.length; taskIndex++) {
+    const task = projectTasks[taskIndex];
+    if (start.getTime() > task.start.getTime()) {
+      start = task.start;
+    }
+    if (end.getTime() < task.end.getTime()) {
+      end = task.end;
+    }
+  }
+  return [start, end];
+};
 
 interface UseUiDataProps {
   view: ViewMode;
