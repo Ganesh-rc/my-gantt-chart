@@ -2,6 +2,10 @@ import React, { useState, ReactElement } from "react";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
 import { getTaskList } from "./helperData";
 
+const getProject = (task: Task, taskList: Task[]): Task => {
+  return taskList[taskList.findIndex((t) => t.id === task.project)];
+};
+
 export const getStartAndEndDatesOfProject = (
   tasks: Task[],
   projectId: string
@@ -52,10 +56,7 @@ export const handleTaskChange = (
       updatedTaskList,
       modifiedTask.project
     );
-    const project =
-      updatedTaskList[
-        updatedTaskList.findIndex((task) => task.id === modifiedTask.project)
-      ];
+    const project = getProject(modifiedTask, updatedTaskList);
     if (project.start.getTime() !== end.getTime() || project.end.getTime()) {
       const newProject = { ...project, start, end };
       updatedTaskList = updatedTaskList.map((task) =>
@@ -74,4 +75,12 @@ export const handleTaskProgressChange = (
   setTasks(
     taskList.map((task) => (task.id === modifiedTask.id ? modifiedTask : task))
   );
+};
+
+export const handleExpanderClick = (
+  modifiedTask: Task,
+  taskList: Task[],
+  setTasks: Function
+): void => {
+  setTasks(taskList.map((t) => (t.id === modifiedTask.id ? modifiedTask : t)));
 };
