@@ -263,7 +263,7 @@ export const getTaskList = () => {
 export const getStartAndEndDatesOfProject = (
   tasks: Task[],
   projectId: string
-) => {
+): [start: Date, end: Date] => {
   const projectTasks = tasks.filter((t) => t.project === projectId);
   let start = projectTasks[0].start;
   let end = projectTasks[0].end;
