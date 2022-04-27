@@ -9,10 +9,23 @@ import {
   handleExpanderClick,
 } from "../services/helperFunctions";
 import { getTaskList } from "../services/helperData";
+import { BufferComponent } from "../components/BufferComponent";
 
 export const GanttChart = (): ReactElement => {
-  const { view, setView, tasks, setTasks, columnWidth, ganttHeight } =
-    useUiData();
+  const {
+    view,
+    setView,
+    tasks,
+    setTasks,
+    loading,
+    setLoading,
+    columnWidth,
+    ganttHeight,
+  } = useUiData();
+
+  if (loading) {
+    return <BufferComponent />;
+  }
 
   return (
     <Box>

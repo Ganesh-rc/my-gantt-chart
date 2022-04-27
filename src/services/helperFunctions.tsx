@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactElement, useEffect } from "react";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
 import { getTaskList } from "./helperData";
 
@@ -26,21 +26,40 @@ export const getStartAndEndDatesOfProject = (
   return [start, end];
 };
 
-interface UseUiDataProps {
+interface UseUiDataType {
   view: ViewMode;
   setView: Function;
   tasks: Task[];
   setTasks: Function;
+  loading: Boolean;
+  setLoading: Function;
   columnWidth: number;
   ganttHeight: number;
 }
 
-export const useUiData = (): UseUiDataProps => {
+export const useUiData = (): UseUiDataType => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
+  const [loading, setLoading] = useState<Boolean>(true);
   const columnWidth = 60;
   const ganttHeight = window.innerHeight - 100;
-  return { view, setView, tasks, setTasks, columnWidth, ganttHeight };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  return {
+    view,
+    setView,
+    tasks,
+    setTasks,
+    loading,
+    setLoading,
+    columnWidth,
+    ganttHeight,
+  };
 };
 
 export const handleTaskChange = (
