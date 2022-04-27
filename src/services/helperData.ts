@@ -23,7 +23,7 @@ export const getTaskList = () => {
       ),
       name: "Idea",
       id: "Task 0",
-      progress: 120,
+      progress: 90,
       type: "task",
       project: "ProjectSample",
     },
@@ -258,24 +258,4 @@ export const getTaskList = () => {
     },
   ];
   return tasks;
-};
-
-export const getStartAndEndDatesOfProject = (
-  tasks: Task[],
-  projectId: string
-) => {
-  const projectTasks = tasks.filter((t) => t.project === projectId);
-  let start = projectTasks[0].start;
-  let end = projectTasks[0].end;
-
-  for (let taskIndex = 0; taskIndex < projectTasks.length; taskIndex++) {
-    const task = projectTasks[taskIndex];
-    if (start.getTime() > task.start.getTime()) {
-      start = task.start;
-    }
-    if (end.getTime() < task.end.getTime()) {
-      end = task.end;
-    }
-  }
-  return [start, end];
 };
