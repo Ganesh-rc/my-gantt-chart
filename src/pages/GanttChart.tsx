@@ -21,6 +21,7 @@ export const GanttChart = (): ReactElement => {
     setLoading,
     columnWidth,
     ganttHeight,
+    ganttWidth,
   } = useUiData();
 
   if (loading) {
