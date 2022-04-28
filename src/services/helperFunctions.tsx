@@ -1,6 +1,8 @@
-import React, { useState, ReactElement, useEffect } from "react";
-import { Gantt, Task, ViewMode } from "gantt-task-react";
+import { useState, useEffect } from "react";
+import { Task, ViewMode } from "gantt-task-react";
 import { getTaskList } from "./helperData";
+import { clearTimeout } from "timers";
+import { useWindowDimensions } from "./windowData";
 
 const getProject = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
@@ -35,19 +37,23 @@ interface UseUiDataType {
   setLoading: Function;
   columnWidth: number;
   ganttHeight: number;
+  ganttWidth: number;
 }
 
 export const useUiData = (): UseUiDataType => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
   const [loading, setLoading] = useState<Boolean>(true);
+  const { ganttHeight, ganttWidth } = useWindowDimensions();
   const columnWidth = 60;
-  const ganttHeight = window.innerHeight - 100;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return {
@@ -59,6 +65,7 @@ export const useUiData = (): UseUiDataType => {
     setLoading,
     columnWidth,
     ganttHeight,
+    ganttWidth,
   };
 };
 

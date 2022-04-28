@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { GanttChart } from "./pages/GanttChart";
 
 const App = (): ReactElement => {
