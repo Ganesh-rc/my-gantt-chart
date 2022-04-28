@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 interface WindowDimensionsType {
   ganttHeight: number;
@@ -8,7 +8,7 @@ interface WindowDimensionsType {
 const getWindowDimensions = (): WindowDimensionsType => {
   const { innerWidth: width, innerHeight: height } = window;
   return {
-    ganttHeight: (height * 8.5) / 10,
+    ganttHeight: (height * 8.7) / 10,
     ganttWidth: (width * 9) / 10,
   };
 };

@@ -1,6 +1,6 @@
-import React, { useState, ReactElement } from "react";
-import { Box, Typography } from "@mui/material";
-import { Gantt, Task, ViewMode } from "gantt-task-react";
+import { ReactElement } from "react";
+import { Box } from "@mui/material";
+import { Gantt } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 import {
   useUiData,
@@ -8,7 +8,6 @@ import {
   handleTaskProgressChange,
   handleExpanderClick,
 } from "../services/helperFunctions";
-import { getTaskList } from "../services/helperData";
 import { BufferComponent } from "../components/BufferComponent";
 
 export const GanttChart = (): ReactElement => {

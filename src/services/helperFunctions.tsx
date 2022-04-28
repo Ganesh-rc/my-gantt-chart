@@ -1,5 +1,5 @@
-import React, { useState, ReactElement, useEffect } from "react";
-import { Gantt, Task, ViewMode } from "gantt-task-react";
+import { useState, useEffect } from "react";
+import { Task, ViewMode } from "gantt-task-react";
 import { getTaskList } from "./helperData";
 import { clearTimeout } from "timers";
 import { useWindowDimensions } from "./windowData";
@@ -44,8 +44,8 @@ export const useUiData = (): UseUiDataType => {
   const [view, setView] = useState<ViewMode>(ViewMode.Day);
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
   const [loading, setLoading] = useState<Boolean>(true);
-  const columnWidth = 60;
   const { ganttHeight, ganttWidth } = useWindowDimensions();
+  const columnWidth = 60;
 
   useEffect(() => {
     const timer = setTimeout(() => {
