@@ -30,7 +30,7 @@ export const getTaskList = () => {
       progress: 90,
       type: "task",
       dependencies: ["Task 0"],
-      project: "Project Management Activities",
+      project: "Task 0",
     },
     {
       start: new Date(2022, 3, 1),
@@ -40,7 +40,7 @@ export const getTaskList = () => {
       progress: 90,
       type: "task",
       dependencies: ["Task 0.1"],
-      project: "Project Management Activities",
+      project: "Task 0",
     },
     {
       start: new Date(2022, 3, 2),
@@ -50,7 +50,7 @@ export const getTaskList = () => {
       progress: 90,
       type: "task",
       dependencies: ["Task 0.2"],
-      project: "Project Management Activities",
+      project: "Task 0",
     },
     {
       start: new Date(2022, 3, 2),
@@ -60,7 +60,7 @@ export const getTaskList = () => {
       progress: 90,
       type: "task",
       dependencies: ["Task 0.3"],
-      project: "Project Management Activities",
+      project: "Task 0",
     },
     {
       start: new Date(2022, 3, 2),
@@ -70,7 +70,7 @@ export const getTaskList = () => {
       progress: 90,
       type: "milestone",
       dependencies: ["Task 0.4"],
-      project: "Project Management Activities",
+      project: "Task 0",
     },
     {
       start: new Date(2022, 3, 3),
@@ -90,7 +90,7 @@ export const getTaskList = () => {
       progress: 40,
       dependencies: ["Task 1"],
       type: "task",
-      project: "Intiation/Planning",
+      project: "Task 1",
     },
     {
       start: new Date(2022, 3, 3),
@@ -100,7 +100,7 @@ export const getTaskList = () => {
       progress: 40,
       dependencies: ["Task 1.1"],
       type: "task",
-      project: "Intiation/Planning",
+      project: "Task 1",
     },
     {
       start: new Date(2022, 3, 4),
@@ -110,7 +110,7 @@ export const getTaskList = () => {
       progress: 40,
       dependencies: ["Task 1.2"],
       type: "task",
-      project: "Intiation/Planning",
+      project: "Task 1",
     },
     {
       start: new Date(2022, 3, 5),
@@ -120,7 +120,7 @@ export const getTaskList = () => {
       progress: 40,
       dependencies: ["Task 1.3"],
       type: "task",
-      project: "Intiation/Planning",
+      project: "Task 1",
     },
     {
       start: new Date(2022, 3, 5),
@@ -130,7 +130,7 @@ export const getTaskList = () => {
       progress: 40,
       dependencies: ["Task 1.4"],
       type: "milestone",
-      project: "Intiation/Planning",
+      project: "Task 1",
     },
     {
       start: new Date(2022, 3, 3),
@@ -138,7 +138,7 @@ export const getTaskList = () => {
       name: "Research",
       id: "Task 14",
       progress: 40,
-      dependencies: ["Task 1.4"],
+      dependencies: ["Task 1.5"],
       type: "project",
       project: "ProjectSample",
     },

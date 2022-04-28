@@ -4,7 +4,7 @@ import { getTaskList } from "./helperData";
 import { clearTimeout } from "timers";
 import { useWindowDimensions } from "./windowData";
 
-const getProject = (task: Task, taskList: Task[]): Task => {
+const getProjectOrTask = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
 };
 
@@ -82,7 +82,7 @@ export const handleTaskChange = (
       updatedTaskList,
       modifiedTask.project
     );
-    const project = getProject(modifiedTask, updatedTaskList);
+    const project = getProjectOrTask(modifiedTask, updatedTaskList);
     if (project.start.getTime() !== end.getTime() || project.end.getTime()) {
       const newProject = { ...project, start, end };
       updatedTaskList = updatedTaskList.map((task) =>
