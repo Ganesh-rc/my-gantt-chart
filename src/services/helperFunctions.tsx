@@ -8,7 +8,7 @@ const getProject = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
 };
 
-export const getStartAndEndDatesOfProject = (
+export const getStartAndEndDatesOfProjectOrTask = (
   tasks: Task[],
   projectId: string
 ): [start: Date, end: Date] => {
@@ -78,7 +78,7 @@ export const handleTaskChange = (
     task.id === modifiedTask.id ? modifiedTask : task
   );
   if (modifiedTask.project) {
-    const [start, end] = getStartAndEndDatesOfProject(
+    const [start, end] = getStartAndEndDatesOfProjectOrTask(
       updatedTaskList,
       modifiedTask.project
     );
