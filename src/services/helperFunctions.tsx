@@ -8,6 +8,32 @@ const getProjectOrTask = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
 };
 
+const getUpdatedStartEndTaskList = (
+  modifiedTask: Task,
+  updatedTaskList: Task[]
+) => {
+  if (modifiedTask.project) {
+    const [start, end] = getStartAndEndDatesOfProjectOrTask(
+      updatedTaskList,
+      modifiedTask.project
+    );
+    const parent = getProjectOrTask(modifiedTask, updatedTaskList);
+    if (parent.start.getTime() !== end.getTime() || parent.end.getTime()) {
+      const newParent = { ...parent, start, end };
+      updatedTaskList = updatedTaskList.map((task) =>
+        task.id === modifiedTask.project ? newParent : task
+      );
+      if (newParent.project) {
+        updatedTaskList = getUpdatedStartEndTaskList(
+          newParent,
+          updatedTaskList
+        );
+      }
+    }
+  }
+  return updatedTaskList;
+};
+
 export const getStartAndEndDatesOfProjectOrTask = (
   tasks: Task[],
   projectId: string
@@ -77,19 +103,7 @@ export const handleTaskChange = (
   let updatedTaskList = tasks.map((task) =>
     task.id === modifiedTask.id ? modifiedTask : task
   );
-  if (modifiedTask.project) {
-    const [start, end] = getStartAndEndDatesOfProjectOrTask(
-      updatedTaskList,
-      modifiedTask.project
-    );
-    const project = getProjectOrTask(modifiedTask, updatedTaskList);
-    if (project.start.getTime() !== end.getTime() || project.end.getTime()) {
-      const newProject = { ...project, start, end };
-      updatedTaskList = updatedTaskList.map((task) =>
-        task.id === modifiedTask.project ? newProject : task
-      );
-    }
-  }
+  updatedTaskList = getUpdatedStartEndTaskList(modifiedTask, updatedTaskList);
   setTasks(updatedTaskList);
 };
 
