@@ -38,9 +38,6 @@ export const GanttChart = (): ReactElement => {
         onProgressChange={(modifiedTask): void => {
           handleTaskProgressChange(modifiedTask, tasks, setTasks);
         }}
-        onExpanderClick={(modifiedTask): void => {
-          handleExpanderClick(modifiedTask, tasks, setTasks);
-        }}
         listCellWidth="320px"
         columnWidth={columnWidth}
         ganttHeight={ganttHeight}

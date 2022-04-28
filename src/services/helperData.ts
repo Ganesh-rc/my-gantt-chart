@@ -20,7 +20,6 @@ export const getTaskList = () => {
       progress: 90,
       type: "project",
       project: "ProjectSample",
-      hideChildren: false,
     },
     {
       start: new Date(2022, 3, 1),
@@ -139,7 +138,7 @@ export const getTaskList = () => {
       id: "Task 14",
       progress: 40,
       dependencies: ["Task 1.5"],
-      type: "project",
+      type: "task",
       project: "ProjectSample",
     },
     {
