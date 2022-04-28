@@ -35,7 +35,7 @@ export const GanttChart = (): ReactElement => {
         onDateChange={(modifiedTask): void => {
           handleTaskChange(modifiedTask, tasks, setTasks);
         }}
-        onProgressChange={(modifiedTask): void => {
+        onProgressChange={(modifiedTask, children): void => {
           handleTaskProgressChange(modifiedTask, tasks, setTasks);
         }}
         listCellWidth="320px"

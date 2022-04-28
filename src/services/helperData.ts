@@ -10,7 +10,6 @@ export const getTaskList = () => {
       id: "ProjectSample",
       progress: 25,
       type: "project",
-      hideChildren: false,
     },
     {
       start: new Date(2022, 3, 1),

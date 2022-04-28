@@ -8,10 +8,30 @@ const getProjectOrTask = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
 };
 
+export const getStartAndEndDatesOfProjectOrTask = (
+  tasks: Task[],
+  projectId: string
+): [start: Date, end: Date] => {
+  const projectTasks = tasks.filter((t) => t.project === projectId);
+  let start = projectTasks[0].start;
+  let end = projectTasks[0].end;
+
+  for (let taskIndex = 0; taskIndex < projectTasks.length; taskIndex++) {
+    const task = projectTasks[taskIndex];
+    if (start.getTime() > task.start.getTime()) {
+      start = task.start;
+    }
+    if (end.getTime() < task.end.getTime()) {
+      end = task.end;
+    }
+  }
+  return [start, end];
+};
+
 const getUpdatedStartEndTaskList = (
   modifiedTask: Task,
   updatedTaskList: Task[]
-) => {
+): Task[] => {
   if (modifiedTask.project) {
     const [start, end] = getStartAndEndDatesOfProjectOrTask(
       updatedTaskList,
@@ -34,24 +54,29 @@ const getUpdatedStartEndTaskList = (
   return updatedTaskList;
 };
 
-export const getStartAndEndDatesOfProjectOrTask = (
-  tasks: Task[],
-  projectId: string
-): [start: Date, end: Date] => {
-  const projectTasks = tasks.filter((t) => t.project === projectId);
-  let start = projectTasks[0].start;
-  let end = projectTasks[0].end;
-
-  for (let taskIndex = 0; taskIndex < projectTasks.length; taskIndex++) {
-    const task = projectTasks[taskIndex];
-    if (start.getTime() > task.start.getTime()) {
-      start = task.start;
+const getUpdatedProgressTaskList = (
+  modifiedTask: Task,
+  updatedTaskList: Task[]
+): Task[] => {
+  if (modifiedTask.project) {
+    let parent = getProjectOrTask(modifiedTask, updatedTaskList);
+    let numChildren = 0;
+    let totalProgress = 0;
+    updatedTaskList.forEach((task): void => {
+      if (task.project === parent.id) {
+        totalProgress += task.progress;
+        numChildren++;
+      }
+    });
+    if (numChildren !== 0) {
+      parent = { ...parent, progress: totalProgress / numChildren };
+      updatedTaskList = updatedTaskList.map((t) =>
+        t.id === parent.id ? parent : t
+      );
     }
-    if (end.getTime() < task.end.getTime()) {
-      end = task.end;
-    }
+    updatedTaskList = getUpdatedProgressTaskList(parent, updatedTaskList);
   }
-  return [start, end];
+  return updatedTaskList;
 };
 
 interface UseUiDataType {
@@ -112,9 +137,11 @@ export const handleTaskProgressChange = (
   taskList: Task[],
   setTasks: Function
 ): void => {
-  setTasks(
-    taskList.map((task) => (task.id === modifiedTask.id ? modifiedTask : task))
+  let updatedTaskList = taskList.map((task) =>
+    task.id === modifiedTask.id ? modifiedTask : task
   );
+  updatedTaskList = getUpdatedProgressTaskList(modifiedTask, updatedTaskList);
+  setTasks(updatedTaskList);
 };
 
 export const handleExpanderClick = (
