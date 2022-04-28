@@ -4,7 +4,7 @@ import { getTaskList } from "./helperData";
 import { clearTimeout } from "timers";
 import { useWindowDimensions } from "./windowData";
 
-const getProjectOrTask = (task: Task, taskList: Task[]): Task => {
+const getParent = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
 };
 
@@ -37,7 +37,7 @@ const getUpdatedStartEndTaskList = (
       updatedTaskList,
       modifiedTask.project
     );
-    const parent = getProjectOrTask(modifiedTask, updatedTaskList);
+    const parent = getParent(modifiedTask, updatedTaskList);
     if (parent.start.getTime() !== end.getTime() || parent.end.getTime()) {
       const newParent = { ...parent, start, end };
       updatedTaskList = updatedTaskList.map((task) =>
@@ -59,7 +59,7 @@ const getUpdatedProgressTaskList = (
   updatedTaskList: Task[]
 ): Task[] => {
   if (modifiedTask.project) {
-    let parent = getProjectOrTask(modifiedTask, updatedTaskList);
+    let parent = getParent(modifiedTask, updatedTaskList);
     let numChildren = 0;
     let totalProgress = 0;
     updatedTaskList.forEach((task): void => {
