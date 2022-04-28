@@ -1,6 +1,7 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { Gantt, Task, ViewMode } from "gantt-task-react";
 import { getTaskList } from "./helperData";
+import { clearTimeout } from "timers";
 
 const getProject = (task: Task, taskList: Task[]): Task => {
   return taskList[taskList.findIndex((t) => t.id === task.project)];
@@ -48,6 +49,9 @@ export const useUiData = (): UseUiDataType => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return {
