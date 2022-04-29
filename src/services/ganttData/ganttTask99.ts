@@ -1,0 +1,156 @@
+import { Task } from "gantt-task-react";
+
+export const getTaskList99 = (): Task[] => {
+  const currentDate = new Date();
+  const tasks: Task[] = [
+    {
+      start: new Date(2022, 3, 3),
+      end: new Date(2022, 3, 6, 9, 0),
+      name: "Research",
+      id: "Task 14",
+      progress: 40,
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 4),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 6, 0, 0),
+      name: "Requirement Analysis",
+      id: "Task 15",
+      progress: 25,
+      dependencies: ["Task 14"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 5),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8, 0, 0),
+      name: "Discussion with team",
+      id: "Task 16",
+      progress: 10,
+      dependencies: ["Task 15"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 6),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 9, 0, 0),
+      name: "Defining Requirements",
+      id: "Task 17",
+      progress: 15,
+      dependencies: ["Task 16"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 10),
+      end: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        12,
+        0,
+        0
+      ),
+      name: "Designing Architecture",
+      id: "Task 18",
+      progress: 10,
+      dependencies: ["Task 16", "Task 17"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 13),
+      end: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        15,
+        0,
+        0
+      ),
+      name: "Prototype Development",
+      id: "Task 19",
+      progress: 2,
+      dependencies: ["Task 18"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 16),
+      end: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        18,
+        0,
+        0
+      ),
+      name: "Prototype Review",
+      id: "Task 20",
+      progress: 2,
+      dependencies: ["Task 19"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 17),
+      end: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        18,
+        0,
+        0
+      ),
+      name: "Team Discussion and planning",
+      id: "Task 21",
+      progress: 2,
+      dependencies: ["Task 20"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 18),
+      end: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        27,
+        0,
+        0
+      ),
+      name: "Development",
+      id: "Task 22",
+      progress: 2,
+      dependencies: ["Task 21"],
+      type: "task",
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 28),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 30),
+      name: "Review",
+      id: "Task 23",
+      type: "task",
+      progress: 70,
+      dependencies: ["Task 21"],
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 2),
+      name: "Release",
+      id: "Task 24",
+      progress: currentDate.getMonth(),
+      type: "milestone",
+      dependencies: ["Task 23"],
+      project: "ProjectSample",
+    },
+    {
+      start: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 7),
+      end: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 7),
+      name: "Celebration",
+      id: "Task 25",
+      progress: 0,
+      isDisabled: true,
+      type: "task",
+    },
+  ];
+  return tasks;
+};
