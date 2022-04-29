@@ -1,6 +1,5 @@
 import { Task } from "gantt-task-react";
-import { getTaskList99 } from "./ganttTasks99";
-
+import { getTaskList4 } from "./ganttTasks04";
 export const getTaskList3 = (): Task[] => {
   const currentDate = new Date();
   let tasks: Task[] = [
@@ -342,7 +341,7 @@ export const getTaskList3 = (): Task[] => {
       progress: 40,
       dependencies: ["Task 23.5"],
       type: "task",
-      project: "Task 15",
+      project: "Task 23",
     },
     {
       start: new Date(2022, 7, 19),
@@ -905,7 +904,7 @@ export const getTaskList3 = (): Task[] => {
       project: "Task 29",
     },
   ];
-  const tasks99 = getTaskList99();
-  tasks.push(...tasks99);
+  const tasks4 = getTaskList4();
+  tasks.push(...tasks4);
   return tasks;
 };
