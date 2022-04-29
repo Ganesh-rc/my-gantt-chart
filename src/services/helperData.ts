@@ -83,8 +83,8 @@ export const getTaskList = () => {
       let subTask = new GanttTask({
         start: task.start,
         end: task.end,
-        name: `Subtask ${taskIndex}.${subTaskIndex}`,
-        id: `Task ${taskIndex}.${subTaskIndex}`,
+        name: `Subtask ${taskIndex}.${subTaskIndex + 1}`,
+        id: `Task ${taskIndex}.${subTaskIndex + 1}`,
         progress: 40,
         type: getTaskType(subTaskIndex, "subtask"),
         dependencies: [taskList[taskList.length - 1].id],
