@@ -2,7 +2,6 @@ import { Task } from "gantt-task-react";
 import { getTaskList2 } from "./ganttTasks02";
 
 export const getTaskList1 = (): Task[] => {
-  const currentDate = new Date();
   let tasks: Task[] = [
     {
       start: new Date(2022, 3, 1),

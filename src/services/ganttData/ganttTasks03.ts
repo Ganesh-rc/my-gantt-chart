@@ -1,7 +1,6 @@
 import { Task } from "gantt-task-react";
 import { getTaskList4 } from "./ganttTasks04";
 export const getTaskList3 = (): Task[] => {
-  const currentDate = new Date();
   let tasks: Task[] = [
     {
       start: new Date(2022, 6, 22),
@@ -189,7 +188,7 @@ export const getTaskList3 = (): Task[] => {
       name: "Build Sprint 15",
       id: "Task 22",
       progress: 40,
-      dependencies: ["Task 22.8"],
+      dependencies: ["Task 21.8"],
       type: "project",
       project: "ProjectSample",
     },
@@ -649,7 +648,7 @@ export const getTaskList3 = (): Task[] => {
       name: "Backlog grooming",
       id: "Task 27.1",
       progress: 40,
-      dependencies: ["Task 19"],
+      dependencies: ["Task 27"],
       type: "task",
       project: "Task 27",
     },
