@@ -86,7 +86,7 @@ export const getTaskList = () => {
         name: `Subtask ${taskIndex}.${subTaskIndex}`,
         id: `Task ${taskIndex}.${subTaskIndex}`,
         progress: 40,
-        type: getTaskType(taskIndex, "subtask"),
+        type: getTaskType(subTaskIndex, "subtask"),
         dependencies: [taskList[taskList.length - 1].id],
         project: task.id,
       });
