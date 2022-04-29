@@ -1,8 +1,7 @@
 import { Task } from "gantt-task-react";
-import { getTaskList99 } from "./ganttTasks99";
+import { getTaskList3 } from "./ganttTasks03";
 
 export const getTaskList2 = (): Task[] => {
-  const currentDate = new Date();
   let tasks: Task[] = [
     {
       start: new Date(2022, 4, 8),
@@ -905,7 +904,7 @@ export const getTaskList2 = (): Task[] => {
       project: "Task 19",
     },
   ];
-  const tasks99 = getTaskList99();
-  tasks.push(...tasks99);
+  const tasks3 = getTaskList3();
+  tasks.push(...tasks3);
   return tasks;
 };
