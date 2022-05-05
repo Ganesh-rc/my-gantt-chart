@@ -9,19 +9,11 @@ import {
   handleExpanderClick,
 } from "../services/helperFunctions";
 import { BufferComponent } from "../components/BufferComponent";
+import { ChartView } from "../components/ChartView";
 
 export const GanttChart = (): ReactElement => {
-  const {
-    view,
-    setView,
-    tasks,
-    setTasks,
-    loading,
-    setLoading,
-    columnWidth,
-    ganttHeight,
-    ganttWidth,
-  } = useUiData();
+  const { view, tasks, setTasks, loading, columnWidth, ganttHeight } =
+    useUiData();
 
   if (loading) {
     return <BufferComponent />;
@@ -29,11 +21,13 @@ export const GanttChart = (): ReactElement => {
 
   return (
     <Box>
+      <ChartView />
       <Gantt
         tasks={tasks}
         viewMode={view}
         onDateChange={(modifiedTask): void => {
           handleTaskChange(modifiedTask, tasks, setTasks);
+          console.log(view);
         }}
         onProgressChange={(modifiedTask, children): void => {
           handleTaskProgressChange(modifiedTask, tasks, setTasks);
