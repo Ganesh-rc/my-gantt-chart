@@ -122,7 +122,7 @@ export const useUiData = (): UseUiDataType => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentTasks(tasks.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(tasks.length / itemsPerPage));
-  }, [itemOffset]);
+  }, [itemOffset, tasks]);
 
   return {
     view,

@@ -20,9 +20,11 @@ export const GanttChart = (): ReactElement => {
     columnWidth,
     ganttHeight,
     pageCount,
+    itemOffset,
     setItemOffset,
     itemsPerPage,
     currentTasks,
+    setCurrentTasks,
   } = useUiData();
 
   if (loading) {
