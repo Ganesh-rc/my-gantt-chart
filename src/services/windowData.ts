@@ -8,7 +8,7 @@ interface WindowDimensionsType {
 const getWindowDimensions = (): WindowDimensionsType => {
   const { innerWidth: width, innerHeight: height } = window;
   return {
-    ganttHeight: (height * 8.7) / 10,
+    ganttHeight: (height * 8) / 10,
     ganttWidth: (width * 9) / 10,
   };
 };
