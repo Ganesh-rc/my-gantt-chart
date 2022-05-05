@@ -18,8 +18,12 @@ const getBGColor = (clicked: boolean): string => {
   return clicked ? "#0000CD" : "#6495ED";
 };
 
-export const ChartView = (): ReactElement => {
-  const { view, setView } = useUiData();
+interface ChartViewProps {
+  view: ViewMode;
+  setView: Function;
+}
+
+export const ChartView = ({ view, setView }: ChartViewProps): ReactElement => {
   const [onClickColor, setOnClickColor] = useState<{
     day: boolean;
     week: boolean;
@@ -64,7 +68,6 @@ export const ChartView = (): ReactElement => {
       <CustomButton
         sx={{ backgroundColor: getBGColor(onClickColor.day) }}
         onClick={(e) => {
-          //   setView(ViewMode.Day);
           handleClick(e, "day");
         }}
       >
@@ -73,7 +76,6 @@ export const ChartView = (): ReactElement => {
       <CustomButton
         sx={{ backgroundColor: getBGColor(onClickColor.week) }}
         onClick={(e) => {
-          //   setView(ViewMode.Week);
           handleClick(e, "week");
         }}
       >
@@ -82,7 +84,6 @@ export const ChartView = (): ReactElement => {
       <CustomButton
         sx={{ backgroundColor: getBGColor(onClickColor.month) }}
         onClick={(e) => {
-          //   setView(ViewMode.Month);
           handleClick(e, "month");
         }}
       >

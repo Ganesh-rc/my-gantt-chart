@@ -34,7 +34,7 @@ export const GanttChart = (): ReactElement => {
 
   return (
     <Box>
-      <ChartView />
+      <ChartView view={view} setView={setView} />
       <Gantt
         tasks={currentTasks}
         viewMode={view}
