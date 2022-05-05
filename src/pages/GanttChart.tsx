@@ -8,6 +8,7 @@ import {
   handleTaskProgressChange,
 } from "../services/helperFunctions";
 import { BufferComponent } from "../components/BufferComponent";
+import { ChartView } from "../components/ChartView";
 import { Paginate } from "../components/Paginate";
 
 export const GanttChart = (): ReactElement => {
@@ -33,11 +34,13 @@ export const GanttChart = (): ReactElement => {
 
   return (
     <Box>
+      <ChartView view={view} setView={setView} />
       <Gantt
         tasks={currentTasks}
         viewMode={view}
         onDateChange={(modifiedTask): void => {
           handleTaskChange(modifiedTask, tasks, setTasks);
+          console.log(view);
         }}
         onProgressChange={(modifiedTask, children): void => {
           handleTaskProgressChange(modifiedTask, tasks, setTasks);
