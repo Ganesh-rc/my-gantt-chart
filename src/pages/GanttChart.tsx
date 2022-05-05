@@ -6,9 +6,9 @@ import {
   useUiData,
   handleTaskChange,
   handleTaskProgressChange,
-  handleExpanderClick,
 } from "../services/helperFunctions";
 import { BufferComponent } from "../components/BufferComponent";
+import { Paginate } from "../components/Paginate";
 
 export const GanttChart = (): ReactElement => {
   const {
@@ -17,10 +17,14 @@ export const GanttChart = (): ReactElement => {
     tasks,
     setTasks,
     loading,
-    setLoading,
     columnWidth,
     ganttHeight,
-    ganttWidth,
+    pageCount,
+    itemOffset,
+    setItemOffset,
+    itemsPerPage,
+    currentTasks,
+    setCurrentTasks,
   } = useUiData();
 
   if (loading) {
@@ -30,7 +34,7 @@ export const GanttChart = (): ReactElement => {
   return (
     <Box>
       <Gantt
-        tasks={tasks}
+        tasks={currentTasks}
         viewMode={view}
         onDateChange={(modifiedTask): void => {
           handleTaskChange(modifiedTask, tasks, setTasks);
@@ -41,6 +45,12 @@ export const GanttChart = (): ReactElement => {
         listCellWidth="320px"
         columnWidth={columnWidth}
         ganttHeight={ganttHeight}
+      />
+      <Paginate
+        pageCount={pageCount}
+        itemsPerPage={itemsPerPage}
+        tasks={tasks}
+        setItemOffset={setItemOffset}
       />
     </Box>
   );

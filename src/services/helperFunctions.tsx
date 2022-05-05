@@ -89,6 +89,13 @@ interface UseUiDataType {
   columnWidth: number;
   ganttHeight: number;
   ganttWidth: number;
+  pageCount: number;
+  setPageCount: Function;
+  itemOffset: number;
+  setItemOffset: Function;
+  itemsPerPage: number;
+  currentTasks: Task[];
+  setCurrentTasks: Function;
 }
 
 export const useUiData = (): UseUiDataType => {
@@ -96,16 +103,26 @@ export const useUiData = (): UseUiDataType => {
   const [tasks, setTasks] = useState<Task[]>(getTaskList());
   const [loading, setLoading] = useState<Boolean>(true);
   const { ganttHeight, ganttWidth } = useWindowDimensions();
+  const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 20;
   const columnWidth = 60;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
     return () => {
       clearTimeout(timer);
     };
   }, []);
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentTasks(tasks.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(tasks.length / itemsPerPage));
+  }, [itemOffset, tasks]);
 
   return {
     view,
@@ -117,6 +134,13 @@ export const useUiData = (): UseUiDataType => {
     columnWidth,
     ganttHeight,
     ganttWidth,
+    pageCount,
+    setPageCount,
+    itemOffset,
+    setItemOffset,
+    itemsPerPage,
+    currentTasks,
+    setCurrentTasks,
   };
 };
 
@@ -150,4 +174,14 @@ export const handleExpanderClick = (
   setTasks: Function
 ): void => {
   setTasks(taskList.map((t) => (t.id === modifiedTask.id ? modifiedTask : t)));
+};
+
+export const handlePageClick = (
+  selected: number,
+  itemsPerPage: number,
+  tasks: Task[],
+  setItemOffset: Function
+) => {
+  const newOffset = (selected * itemsPerPage) % tasks.length;
+  setItemOffset(newOffset);
 };
