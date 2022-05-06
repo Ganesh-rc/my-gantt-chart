@@ -204,6 +204,21 @@ export const handleModalClose = (
   setDblTask(null);
 };
 
+const getBgColor = (
+  selectedColor: "red" | "green" | "blue" | "yellow"
+): string => {
+  if (selectedColor === "red") {
+    return "rgba(255,0,0,0.4)";
+  }
+  if (selectedColor === "blue") {
+    return "rgba(0,0,255, 0.4)";
+  }
+  if (selectedColor === "green") {
+    return "rgba(0, 255, 0, 0.4)";
+  }
+  return "rgba(255,255,0,0.4)";
+};
+
 export const handleColorSelect = (
   selectedColor: "red" | "green" | "blue" | "yellow",
   modifiedTask: Task,
@@ -212,11 +227,14 @@ export const handleColorSelect = (
   setOpenModal: Function,
   setDblTask: Function
 ) => {
+  const bgColor = getBgColor(selectedColor);
   let task: Task = {
     ...modifiedTask,
     styles: {
-      backgroundColor: selectedColor,
-      backgroundSelectedColor: selectedColor,
+      backgroundColor: bgColor,
+      backgroundSelectedColor: bgColor,
+      progressColor: selectedColor,
+      progressSelectedColor: selectedColor,
     },
   };
   handleTaskChange(task, tasks, setTasks);
