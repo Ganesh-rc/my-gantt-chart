@@ -6,10 +6,12 @@ import {
   useUiData,
   handleTaskChange,
   handleTaskProgressChange,
+  handleModalClose,
 } from "../services/helperFunctions";
 import { BufferComponent } from "../components/BufferComponent";
 import { ChartView } from "../components/ChartView";
 import { Paginate } from "../components/Paginate";
+import { ColorModal } from "../components/ColorModal";
 
 export const GanttChart = (): ReactElement => {
   const {
@@ -26,6 +28,8 @@ export const GanttChart = (): ReactElement => {
     itemsPerPage,
     currentTasks,
     setCurrentTasks,
+    openModal,
+    setOpenModal,
   } = useUiData();
 
   if (loading) {
@@ -54,6 +58,13 @@ export const GanttChart = (): ReactElement => {
         itemsPerPage={itemsPerPage}
         tasks={tasks}
         setItemOffset={setItemOffset}
+      />
+      <ColorModal
+        open={openModal}
+        onClose={() => {
+          handleModalClose(setOpenModal);
+        }}
+        setColor={(color: string) => {}}
       />
     </Box>
   );

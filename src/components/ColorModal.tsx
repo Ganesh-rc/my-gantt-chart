@@ -27,15 +27,13 @@ const CustomButton = styled(Button)({
 interface ColorModalProps {
   open: boolean;
   onClose: Function;
-  modifiedTask: Task;
-  taskColor: "red" | "green" | "blue" | "yellow";
+  setColor: Function;
 }
 
 export const ColorModal = ({
   open,
   onClose,
-  modifiedTask,
-  taskColor,
+  setColor,
 }: ColorModalProps): ReactElement => {
   return (
     <Modal
@@ -56,10 +54,38 @@ export const ColorModal = ({
             p: 1,
           }}
         >
-          <CustomButton sx={{ backgroundColor: "red" }}>Red</CustomButton>
-          <CustomButton sx={{ backgroundColor: "green" }}>Green</CustomButton>
-          <CustomButton sx={{ backgroundColor: "blue" }}>Blue</CustomButton>
-          <CustomButton sx={{ backgroundColor: "yellow" }}>Yellow</CustomButton>
+          <CustomButton
+            sx={{ backgroundColor: "red" }}
+            onClick={() => {
+              setColor("red");
+            }}
+          >
+            Red
+          </CustomButton>
+          <CustomButton
+            sx={{ backgroundColor: "green" }}
+            onClick={() => {
+              setColor("green");
+            }}
+          >
+            Green
+          </CustomButton>
+          <CustomButton
+            sx={{ backgroundColor: "blue" }}
+            onClick={() => {
+              setColor("blue");
+            }}
+          >
+            Blue
+          </CustomButton>
+          <CustomButton
+            sx={{ backgroundColor: "yellow" }}
+            onClick={() => {
+              setColor("yellow");
+            }}
+          >
+            Yellow
+          </CustomButton>
         </Box>
       </CenterBox>
     </Modal>

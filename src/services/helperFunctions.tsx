@@ -96,6 +96,8 @@ interface UseUiDataType {
   itemsPerPage: number;
   currentTasks: Task[];
   setCurrentTasks: Function;
+  openModal: boolean;
+  setOpenModal: Function;
 }
 
 export const useUiData = (): UseUiDataType => {
@@ -106,6 +108,7 @@ export const useUiData = (): UseUiDataType => {
   const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const itemsPerPage = 20;
   const columnWidth = 60;
 
@@ -141,6 +144,8 @@ export const useUiData = (): UseUiDataType => {
     itemsPerPage,
     currentTasks,
     setCurrentTasks,
+    openModal,
+    setOpenModal,
   };
 };
 
@@ -184,4 +189,8 @@ export const handlePageClick = (
 ) => {
   const newOffset = (selected * itemsPerPage) % tasks.length;
   setItemOffset(newOffset);
+};
+
+export const handleModalClose = (setOpenModal: Function) => {
+  setOpenModal(false);
 };
