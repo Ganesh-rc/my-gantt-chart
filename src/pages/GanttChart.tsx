@@ -7,6 +7,8 @@ import {
   handleTaskChange,
   handleTaskProgressChange,
   handleModalClose,
+  handleTaskDblClick,
+  handleColorSelect,
 } from "../services/helperFunctions";
 import { BufferComponent } from "../components/BufferComponent";
 import { ChartView } from "../components/ChartView";
@@ -30,6 +32,8 @@ export const GanttChart = (): ReactElement => {
     setCurrentTasks,
     openModal,
     setOpenModal,
+    dblTask,
+    setDblTask,
   } = useUiData();
 
   if (loading) {
@@ -48,6 +52,9 @@ export const GanttChart = (): ReactElement => {
         onProgressChange={(modifiedTask, children): void => {
           handleTaskProgressChange(modifiedTask, tasks, setTasks);
         }}
+        onDoubleClick={(modifiedTask) => {
+          handleTaskDblClick(modifiedTask, setOpenModal, setDblTask);
+        }}
         listCellWidth="320px"
         columnWidth={columnWidth}
         ganttHeight={ganttHeight}
@@ -61,9 +68,22 @@ export const GanttChart = (): ReactElement => {
       <ColorModal
         open={openModal}
         onClose={() => {
-          handleModalClose(setOpenModal);
+          handleModalClose(setOpenModal, setDblTask);
         }}
-        setColor={(color: string) => {}}
+        setColor={(color: "red" | "green" | "blue" | "yellow") => {
+          if (dblTask !== null) {
+            handleColorSelect(
+              color,
+              dblTask,
+              tasks,
+              setTasks,
+              setOpenModal,
+              setDblTask
+            );
+          } else {
+            handleModalClose(setOpenModal, setDblTask);
+          }
+        }}
       />
     </Box>
   );

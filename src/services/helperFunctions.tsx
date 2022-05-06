@@ -98,6 +98,8 @@ interface UseUiDataType {
   setCurrentTasks: Function;
   openModal: boolean;
   setOpenModal: Function;
+  dblTask: Task | null;
+  setDblTask: Function;
 }
 
 export const useUiData = (): UseUiDataType => {
@@ -109,6 +111,7 @@ export const useUiData = (): UseUiDataType => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [dblTask, setDblTask] = useState<Task | null>(null);
   const itemsPerPage = 20;
   const columnWidth = 60;
 
@@ -146,6 +149,8 @@ export const useUiData = (): UseUiDataType => {
     setCurrentTasks,
     openModal,
     setOpenModal,
+    dblTask,
+    setDblTask,
   };
 };
 
@@ -191,8 +196,12 @@ export const handlePageClick = (
   setItemOffset(newOffset);
 };
 
-export const handleModalClose = (setOpenModal: Function) => {
+export const handleModalClose = (
+  setOpenModal: Function,
+  setDblTask: Function
+) => {
   setOpenModal(false);
+  setDblTask(null);
 };
 
 export const handleColorSelect = (
@@ -200,19 +209,25 @@ export const handleColorSelect = (
   modifiedTask: Task,
   tasks: Task[],
   setTasks: Function,
-  setOpenModal: Function
+  setOpenModal: Function,
+  setDblTask: Function
 ) => {
   let task: Task = {
     ...modifiedTask,
-    styles: { backgroundColor: selectedColor },
+    styles: {
+      backgroundColor: selectedColor,
+      backgroundSelectedColor: selectedColor,
+    },
   };
-  handleTaskChange(modifiedTask, tasks, setTasks);
-  handleModalClose(setOpenModal);
+  handleTaskChange(task, tasks, setTasks);
+  handleModalClose(setOpenModal, setDblTask);
 };
 
 export const handleTaskDblClick = (
   modifiedtask: Task,
-  setOpenModal: Function
+  setOpenModal: Function,
+  setDblTask: Function
 ) => {
+  setDblTask(modifiedtask);
   setOpenModal(true);
 };
