@@ -49,9 +49,6 @@ export const GanttChart = (): ReactElement => {
         onDateChange={(modifiedTask): void => {
           handleTaskChange(modifiedTask, tasks, setTasks);
         }}
-        onProgressChange={(modifiedTask, children): void => {
-          handleTaskProgressChange(modifiedTask, tasks, setTasks);
-        }}
         onDoubleClick={(modifiedTask) => {
           handleTaskDblClick(modifiedTask, setOpenModal, setDblTask);
         }}
