@@ -96,6 +96,10 @@ interface UseUiDataType {
   itemsPerPage: number;
   currentTasks: Task[];
   setCurrentTasks: Function;
+  openModal: boolean;
+  setOpenModal: Function;
+  dblTask: Task | null;
+  setDblTask: Function;
 }
 
 export const useUiData = (): UseUiDataType => {
@@ -106,6 +110,8 @@ export const useUiData = (): UseUiDataType => {
   const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [dblTask, setDblTask] = useState<Task | null>(null);
   const itemsPerPage = 20;
   const columnWidth = 60;
 
@@ -141,6 +147,10 @@ export const useUiData = (): UseUiDataType => {
     itemsPerPage,
     currentTasks,
     setCurrentTasks,
+    openModal,
+    setOpenModal,
+    dblTask,
+    setDblTask,
   };
 };
 
@@ -184,4 +194,58 @@ export const handlePageClick = (
 ) => {
   const newOffset = (selected * itemsPerPage) % tasks.length;
   setItemOffset(newOffset);
+};
+
+export const handleModalClose = (
+  setOpenModal: Function,
+  setDblTask: Function
+) => {
+  setOpenModal(false);
+  setDblTask(null);
+};
+
+const getBgColor = (
+  selectedColor: "red" | "green" | "blue" | "yellow"
+): string => {
+  if (selectedColor === "red") {
+    return "rgba(255,0,0,0.4)";
+  }
+  if (selectedColor === "blue") {
+    return "rgba(0,0,255, 0.4)";
+  }
+  if (selectedColor === "green") {
+    return "rgba(0, 255, 0, 0.4)";
+  }
+  return "rgba(255,255,0,0.4)";
+};
+
+export const handleColorSelect = (
+  selectedColor: "red" | "green" | "blue" | "yellow",
+  modifiedTask: Task,
+  tasks: Task[],
+  setTasks: Function,
+  setOpenModal: Function,
+  setDblTask: Function
+) => {
+  const bgColor = getBgColor(selectedColor);
+  let task: Task = {
+    ...modifiedTask,
+    styles: {
+      backgroundColor: bgColor,
+      backgroundSelectedColor: bgColor,
+      progressColor: selectedColor,
+      progressSelectedColor: selectedColor,
+    },
+  };
+  handleTaskChange(task, tasks, setTasks);
+  handleModalClose(setOpenModal, setDblTask);
+};
+
+export const handleTaskDblClick = (
+  modifiedtask: Task,
+  setOpenModal: Function,
+  setDblTask: Function
+) => {
+  setDblTask(modifiedtask);
+  setOpenModal(true);
 };
