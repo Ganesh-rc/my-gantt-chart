@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Modal, Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { Task } from "gantt-task-react";
@@ -22,6 +22,10 @@ const CustomButton = styled(Button)({
   color: "white",
   borderRadius: "4px",
   fontWeight: "bold",
+  marginInline: 4,
+  ":hover": {
+    filter: "brightness(85%)",
+  },
 });
 
 interface ColorModalProps {
@@ -55,7 +59,13 @@ export const ColorModal = ({
           }}
         >
           <CustomButton
-            sx={{ backgroundColor: "red" }}
+            sx={{
+              backgroundColor: "red",
+              ":hover": {
+                backgroundColor: "red",
+                filter: "brightness(50%)",
+              },
+            }}
             onClick={() => {
               setColor("red");
             }}
@@ -63,7 +73,13 @@ export const ColorModal = ({
             Red
           </CustomButton>
           <CustomButton
-            sx={{ backgroundColor: "green" }}
+            sx={{
+              backgroundColor: "green",
+              ":hover": {
+                backgroundColor: "green",
+                filter: "brightness(50%)",
+              },
+            }}
             onClick={() => {
               setColor("green");
             }}
@@ -71,7 +87,13 @@ export const ColorModal = ({
             Green
           </CustomButton>
           <CustomButton
-            sx={{ backgroundColor: "blue" }}
+            sx={{
+              backgroundColor: "blue",
+              ":hover": {
+                backgroundColor: "blue",
+                filter: "brightness(50%)",
+              },
+            }}
             onClick={() => {
               setColor("blue");
             }}
@@ -79,7 +101,13 @@ export const ColorModal = ({
             Blue
           </CustomButton>
           <CustomButton
-            sx={{ backgroundColor: "yellow" }}
+            sx={{
+              backgroundColor: "yellow",
+              ":hover": {
+                backgroundColor: "yellow",
+                filter: "brightness(50%)",
+              },
+            }}
             onClick={() => {
               setColor("yellow");
             }}
