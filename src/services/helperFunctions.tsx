@@ -194,3 +194,25 @@ export const handlePageClick = (
 export const handleModalClose = (setOpenModal: Function) => {
   setOpenModal(false);
 };
+
+export const handleColorSelect = (
+  selectedColor: "red" | "green" | "blue" | "yellow",
+  modifiedTask: Task,
+  tasks: Task[],
+  setTasks: Function,
+  setOpenModal: Function
+) => {
+  let task: Task = {
+    ...modifiedTask,
+    styles: { backgroundColor: selectedColor },
+  };
+  handleTaskChange(modifiedTask, tasks, setTasks);
+  handleModalClose(setOpenModal);
+};
+
+export const handleTaskDblClick = (
+  modifiedtask: Task,
+  setOpenModal: Function
+) => {
+  setOpenModal(true);
+};
